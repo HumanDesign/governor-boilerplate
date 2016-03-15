@@ -7,6 +7,7 @@ const rename = require('gulp-rename')
 const jsmin = require('gulp-jsmin')
 const autoprefixer = require('gulp-autoprefixer')
 const jade = require('gulp-jade')
+const concat = require('gulp-concat')
 
 gulp.task('js', function(){
   return gulp.src('src/js/app.js', { read: false })
@@ -19,6 +20,7 @@ gulp.task('js', function(){
 gulp.task('css', function(){
   return gulp.src('src/stylus/*.styl')
     .pipe(plumber())
+    .pipe(concat('styles.styl'))
     .pipe(stylus({errors: true, 'include css': true}))
     .pipe(autoprefixer())
     .pipe(gulp.dest('dist/assets/css'))
